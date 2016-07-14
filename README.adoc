@@ -1,0 +1,8 @@
+= HubPress: RSS
+
+Build the RSS feed
+
+== TODO
+
+. Complete this README
+. Add tests
