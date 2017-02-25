@@ -4,7 +4,7 @@
   "description": "RSS plugin for HubPress",
   "main": "lib/rssPlugin.js",
   "scripts": {
-    "compile": "babel --presets es2015 -d lib/ src/ && find ./lib -name '*.js' -exec ./node_modules/uglify-js/bin/uglifyjs --compress --mangle --output {} -- {} \\;",
+    "compile": "babel --presets es2015 -d lib/ src/",
     "prepublish": "npm run compile",
     "test": "mocha --compilers js:babel-core/register",
     "cover": "babel-node ./node_modules/.bin/isparta cover _mocha -- --compilers js:babel-core/register",

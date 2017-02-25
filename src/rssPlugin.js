@@ -3,11 +3,11 @@ import RSS from 'rss'
 export function rssPlugin (hubpress) {
 
   hubpress.on('requestGenerateIndex', (opts) => {
-    console.info('RSS Plugin - requestGenerateIndex');
-    console.log('requestGenerateIndex', opts);
+    console.info('rssPlugin - requestGenerateIndex');
+    console.log('rssPlugin - requestGenerateIndex', opts);
 
-    const site = opts.data.config.site;
-    const posts = opts.data.publishedPosts;
+    const site = opts.rootState.application.config.site;
+    const posts = opts.nextState.publishedPosts;
     if (!posts || !posts.length)
       return opts;
 
@@ -43,8 +43,7 @@ export function rssPlugin (hubpress) {
       message: `Publish rss feed`
     });
 
-    const elementsToPublish = (opts.data.elementsToPublish || []).concat(feedsToPublish);
-    const data = Object.assign({}, opts.data, {elementsToPublish});
-    return Object.assign({}, opts, {data});
+    opts.nextState.elementsToPublish = (opts.nextState.elementsToPublish || []).concat(feedsToPublish);
+    return opts
   });
 }
