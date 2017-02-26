@@ -6,7 +6,7 @@ export function rssPlugin (hubpress) {
     console.info('rssPlugin - requestGenerateIndex');
     console.log('rssPlugin - requestGenerateIndex', opts);
 
-    const site = opts.rootState.application.config.site;
+    const site = opts.rootState.application.config.site || {};
     const posts = opts.nextState.publishedPosts;
     if (!posts || !posts.length)
       return opts;
