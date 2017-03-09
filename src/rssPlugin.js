@@ -7,6 +7,7 @@ export function rssPlugin (hubpress) {
     console.log('rssPlugin - requestGenerateIndex', opts);
 
     const site = opts.rootState.application.config.site || {};
+    const siteUrl = opts.rootState.application.config.urls.site || '';
     const posts = opts.nextState.publishedPosts;
     if (!posts || !posts.length)
       return opts;
@@ -16,8 +17,8 @@ export function rssPlugin (hubpress) {
     const feed = new RSS({
         title: site.title || '',
         description: site.description || '',
-        feed_url: `${site.url}/rss/`,
-        site_url: site.url,
+        feed_url: `${siteUrl}/rss/`,
+        site_url: siteUrl,
         image_url: site.cover,
         ttl: '60'
     });
@@ -27,7 +28,7 @@ export function rssPlugin (hubpress) {
       feed.item({
         title:  post.title,
         description: post.html,
-        url: `${site.url}${post.url}`, // link to the item
+        url: `${siteUrl}${post.url}`, // link to the item
         categories: post.tags, // optional - array of item categories
         author: post.author.name, // optional - defaults to feed author property
         date: post.published_at // any format that js Date can parse.
