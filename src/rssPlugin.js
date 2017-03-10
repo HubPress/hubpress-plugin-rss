@@ -8,19 +8,16 @@ export function rssPlugin (hubpress) {
 
     const site = opts.rootState.application.config.site || {};
     const siteUrl = opts.rootState.application.config.urls.site || '';
-    const posts = opts.nextState.publishedPosts;
-    if (!posts || !posts.length)
-      return opts;
+    const posts = opts.nextState.publishedPosts || [];
 
-
-      /* lets create an rss feed */
+    /* lets create an rss feed */
     const feed = new RSS({
-        title: site.title || '',
-        description: site.description || '',
-        feed_url: `${siteUrl}/rss/`,
-        site_url: siteUrl,
-        image_url: site.cover,
-        ttl: '60'
+      title: site.title || '',
+      description: site.description || '',
+      feed_url: `${siteUrl}/rss/`,
+      site_url: siteUrl,
+      image_url: site.cover,
+      ttl: '60'
     });
 
     posts.forEach(post => {
